@@ -1,5 +1,5 @@
 import xml.etree.ElementTree as ET
-
+import json
 import requests
 
 
@@ -32,6 +32,7 @@ def basic_auth_wsdl_forwarder(event, context):
                                        headers=headers)
             req_body = babelway_response.text
             return {
+                'headers': dict(babelway_response.headers),
                 'statusCode': babelway_response.status_code,
                 'body': req_body
             }
